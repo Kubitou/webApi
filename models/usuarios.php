@@ -47,12 +47,18 @@
             return $retorno;
         }
         function update(){
-            $query="update $this->table_name set nome=:nome, email=:email, ra=:ra, celular=:celular where id=:id";
+            $query = "update $this->table_name set nome=:nome, email=:email, ra=:ra, celular=:celular where id=:id";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":nome", $this->name);
             $stmt->bindParam(":email", $this->email);
             $stmt->bindParam(":ra", $this->ra);
             $stmt->bindParam(":celular", $this->celular);
+            return $stmt->execute();
+        }
+        function delete(){
+            $query = "delete from $this->table_name where id=:id";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(":id", $this->id);
             return $stmt->execute();
         }
     }
