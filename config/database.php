@@ -1,7 +1,7 @@
 <?php
     class Database{
-        private $host = 'localhost';
-        private $db_name = 'dbwebapi';
+        private $host = 'carmine';
+        private $db_name = '3dsa_webapi';
         private $username = 'aluno';
         private $password = 'etec@147';
         public $conn;

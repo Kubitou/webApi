@@ -57,5 +57,37 @@ switch($method){
             echo json_encode(array("message"=>"Falha na exclusão de dados."));
         }
     break;
+    case 'PUT':{
+        $data = json_decode(file_get_contents("php://input"));
+        $usuario->id = $data->id;
+        $usuario->name = $data->nome;
+        $usuario->email  = $data->email;
+        $usuario->ra  = $data->ra;
+        $usuario->celular = $data->celular;
+        if($usuario->update()){
+            http_response_code(200);
+            echo json_encode(array("message"=> "usuario atualizado com sucesso"));
+        }else{
+            http_response_code(503);
+            echo json_encode(array("message"=> "falha na atualização de dados"));
+        }
+    }
+    break;
+    case 'POST':{
+        $data = json_decode(file_get_contents("php://input"));
+        $usuario->id = $data->id;
+        $usuario->name = $data->nome;
+        $usuario->email  = $data->email;
+        $usuario->ra  = $data->ra;
+        $usuario->celular = $data->celular;
+        if($usuario->create()){
+            http_response_code(200);
+            echo json_encode(array("message"=> "usuario cadastrado com sucesso"));
+        }else{
+            http_response_code(503);
+            echo json_encode(array("message"=> "falha na inclusão de dados"));
+        }
+    }
+    break;
 }
 ?>
