@@ -53,6 +53,7 @@
         function update(){
             $query = "update $this->table_name set nome=:nome, email=:email, ra=:ra, celular=:celular where id=:id";
             $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(":id", $this->id);
             $stmt->bindParam(":nome", $this->name);
             $stmt->bindParam(":email", $this->email);
             $stmt->bindParam(":ra", $this->ra);
